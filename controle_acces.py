@@ -8,9 +8,9 @@ import pyfirmata
 import cv2
 import os
 from imutils import paths
-from recongnizer import Recognizer
-from recongnizer_ import Recognizer_
-from trainner import Train
+# from recongnizer import Recognizer
+# from recongnizer_ import Recognizer_
+# from trainner import Train
 class Main_control_access(QMainWindow,Ui_MainWindow):
     
     def __init__(self,parent=None):
@@ -164,10 +164,10 @@ class Main_control_access(QMainWindow,Ui_MainWindow):
         (nomImage,filtre)=QFileDialog.getOpenFileName(self,"Selectionner une image",filter="(*.*)")
         if nomImage: 
             if not nomImage.endswith('g'):
-                QMessageBox.critical(self,"Error","fichiers image seulement!")
+                QMessageBox.critical(self,"Error","fichiers image uniquement!")
             else:
                 QMessageBox.information(self,"INFO","Fichier à ouvrir:\n\n%s"%nomImage)
-                image = cv2.imread(nomImage)
+                # image = cv2.imread(nomImage)
                 self.convert_to_QPixmap(image)
                 self.lineEdit_ouvrir_Image.setText(nomImage)
                   
@@ -181,7 +181,7 @@ class Main_control_access(QMainWindow,Ui_MainWindow):
                 os.makedirs(self.db_directory,777)
                 
     def alert_Dialog(self):
-        messageConfirmation = "%s"%str("Non existe deja, OUI pour ecrasé \n NON pour ajouter ")
+        messageConfirmation = "%s"%str("Nom existe deja, OUI pour ecrasé \n NON pour ajouter ")
         reponse = QMessageBox.question(self,"Confirmation",messageConfirmation,QMessageBox.Yes,QMessageBox.No)
         if reponse == QMessageBox.Yes:
             return True
@@ -258,7 +258,7 @@ class Main_control_access(QMainWindow,Ui_MainWindow):
     def trainning(self):
         self.thread = QThread()
         # Step 3: Create a worker object
-        self.worker =Train()
+        self.worker = Train()
         # Step 4: Move worker to the thread
         self.worker.moveToThread(self.thread)
         # Step 5: Connect signals and slots
@@ -303,54 +303,54 @@ class Main_control_access(QMainWindow,Ui_MainWindow):
 
 
 
-#DETECTION
-    def detect_face(self):
-        # read frame from video capture
-        ret, frame = self.cap.read()
-        frame = cv2.flip(frame,1)
+# #DETECTION
+#     def detect_face(self):
+#         # read frame from video capture
+#         ret, frame = self.cap.read()
+#         frame = cv2.flip(frame,1)
         
-        # resize frame image
-        scaling_factor = 0.8
-        frame_ = cv2.resize(frame, None, fx=scaling_factor, fy=scaling_factor, interpolation=cv2.INTER_AREA)
+#         # resize frame image
+#         scaling_factor = 0.8
+#         frame_ = cv2.resize(frame, None, fx=scaling_factor, fy=scaling_factor, interpolation=cv2.INTER_AREA)
 
-        # convert frame to GRAY format
-        gray = cv2.cvtColor(frame_, cv2.COLOR_BGR2GRAY)
+#         # convert frame to GRAY format
+#         gray = cv2.cvtColor(frame_, cv2.COLOR_BGR2GRAY)
 
-        # detect rect faces
-        face_rects = self.face_cascade.detectMultiScale(gray, 1.3, 5)
+#         # detect rect faces
+#         face_rects = self.face_cascade.detectMultiScale(gray, 1.3, 5)
 
-        # for all detected faces
-        for (x, y, w, h) in face_rects:
-            # draw green rect on face
-            roi_img = gray[y:y+h,x:x+w]
-            if self.param!='none':
-                cv2.imwrite(str(self.path)+"/"+str(self.i)+".jpg",roi_img)
-                if self.i == self.limit_raw:
-                    self.timer.stop()
-                    self.cap.release()
-                    self.label_1.setStyleSheet("border: 2px solid white;")
-                    self.pushButton_authentifier.setText("Authentifier")
-                    self.pushButton_authentifier.setText("Authentifier")
-                    QMessageBox.information(self,"INFO","Opération%s"%str(' terminé'))
-                    self.i = 0
-                    self.limit_raw = 50
-                    self.label_1.clear()
-                else:
-                    self.i+=1
-                    print(self.i)
-                    cv2.rectangle(frame_, (x, y), (x + w, y + h), (0, 255, 0), 2)
-                    frame = cv2.cvtColor(frame_, cv2.COLOR_BGR2RGB)
-                    frame = cv2.resize(frame,(210,190),cv2.INTER_AREA)
-                    # get frame infos
-                    height, width, channel = frame.shape
-                    step = channel * width
-                    # create QImage from RGB frame
-                    qImg = QImage(frame.data, width, height, step, QImage.Format_RGB888)
-                    # show frame in img_label
-                    self.label_1.setStyleSheet("border: 1px solid black;")
-                    self.label_1.setPixmap(QPixmap.fromImage(qImg))
-                    self.label_1.setScaledContents(True)
-                    self.setSizePolicy(QSizePolicy.Ignored, QSizePolicy.Ignored)
+#         # for all detected faces
+#         for (x, y, w, h) in face_rects:
+#             # draw green rect on face
+#             roi_img = gray[y:y+h,x:x+w]
+#             if self.param!='none':
+#                 cv2.imwrite(str(self.path)+"/"+str(self.i)+".jpg",roi_img)
+#                 if self.i == self.limit_raw:
+#                     self.timer.stop()
+#                     self.cap.release()
+#                     self.label_1.setStyleSheet("border: 2px solid white;")
+#                     self.pushButton_authentifier.setText("Authentifier")
+#                     self.pushButton_authentifier.setText("Authentifier")
+#                     QMessageBox.information(self,"INFO","Opération%s"%str(' terminé'))
+#                     self.i = 0
+#                     self.limit_raw = 50
+#                     self.label_1.clear()
+#                 else:
+#                     self.i+=1
+#                     print(self.i)
+#                     cv2.rectangle(frame_, (x, y), (x + w, y + h), (0, 255, 0), 2)
+#                     frame = cv2.cvtColor(frame_, cv2.COLOR_BGR2RGB)
+#                     frame = cv2.resize(frame,(210,190),cv2.INTER_AREA)
+#                     # get frame infos
+#                     height, width, channel = frame.shape
+#                     step = channel * width
+#                     # create QImage from RGB frame
+#                     qImg = QImage(frame.data, width, height, step, QImage.Format_RGB888)
+#                     # show frame in img_label
+#                     self.label_1.setStyleSheet("border: 1px solid black;")
+#                     self.label_1.setPixmap(QPixmap.fromImage(qImg))
+#                     self.label_1.setScaledContents(True)
+#                     self.setSizePolicy(QSizePolicy.Ignored, QSizePolicy.Ignored)
   
     def controlTimer(self):
         self.recognizer = Recognizer(self.label_1,self.label_id_1,self.label_nom_1,self.label_9,self.model,self.rec)
