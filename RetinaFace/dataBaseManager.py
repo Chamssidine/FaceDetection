@@ -1,4 +1,4 @@
-from fileManager import FileManager
+from RetinaFace.fileManager import FileManager
 
 class DataBaseManager():
     def __init__(self, db_path):
