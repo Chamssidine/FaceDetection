@@ -1,0 +1,36 @@
+{
+  "header": {
+    "comment": "eric tasks file for project controle_d'acces",
+    "warning": "This file was generated automatically, do not edit.",
+    "saved": "2021-11-12, 07:08:35"
+  },
+  "ProjectScanFilter": "",
+  "Tasks": [
+    {
+      "summary": "WARNING: Any manual changes made to this file will be lost when pyuic5 is",
+      "description": "",
+      "priority": 1,
+      "lineno": 7,
+      "completed": false,
+      "created": 1636606138.213279,
+      "type": 2,
+      "uid": "{34f2af89-463e-478e-a9f5-4a1263c6b8b0}",
+      "parent_uid": "",
+      "expanded": false,
+      "filename": "D:\\projet\\Ui_Ui_access_control.py"
+    },
+    {
+      "summary": "WARNING: Any manual changes made to this file will be lost when pyuic5 is",
+      "description": "",
+      "priority": 1,
+      "lineno": 7,
+      "completed": false,
+      "created": 1636606138.213279,
+      "type": 2,
+      "uid": "{8e676c4b-6300-475b-a575-eddd56604611}",
+      "parent_uid": "",
+      "expanded": false,
+      "filename": "D:\\projet\\Ui_new_update.py"
+    }
+  ]
+}
