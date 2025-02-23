@@ -1,4 +1,4 @@
-# FaceDetection
+# FaceRec
 
 FaceDetection is a software developed for face recognition and visage detection. It leverages machine learning techniques, specifically **Haar Cascade** for face detection and **LBPH (Local Binary Patterns Histogram)** for face recognition.
 
