@@ -1,7 +1,7 @@
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QFileDialog, QGraphicsView, QInputDialog, QMessageBox, QMainWindow, QSizePolicy
 from PyQt5.QtCore	import 	QThread, pyqtSlot
-from Ui_new_update import Ui_MainWindow
+from .Ui_new_update import Ui_MainWindow
 from PyQt5.QtCore import QTimer
 from PyQt5.QtGui import QImage, QPixmap
 from UI.uiManager import UIManager  
